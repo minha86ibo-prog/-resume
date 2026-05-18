@@ -1,0 +1,754 @@
+/* ==========================================================================
+   SHIN MIN HA - BRIGHT BEIGE EDITORIAL BRANDING SITE CSS
+   Concept: Bright Beige Editorial (Soft Premium Elegance)
+   ========================================================================== */
+
+/* 1. Reset & Global Aesthetics */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #FDFBF7;
+    /* 따뜻하고 세련된 소프트 크림 베이지 배경 */
+    color: #1E2229;
+    /* 가독성이 뛰어난 소프트 다크 차콜 */
+    line-height: 1.8;
+    letter-spacing: -0.4px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.brand-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+section {
+    padding: 140px 40px;
+    /* 여백을 넓혀 잡지 같은 공간감 구현 */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 타이포그래피 규칙 */
+h1,
+h2,
+h3,
+h4 {
+    color: #1E2229;
+    font-weight: 700;
+}
+
+.section-headline {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+    color: #5C4033;
+    /* 지적인 에스프레소 브라운 액센트 */
+}
+
+/* ==========================================================================
+   ① HERO SECTION (세련된 비대칭 매거진 스타일 커버)
+   ========================================================================== */
+.hero-section {
+    background-color: #FDFBF7;
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 0;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.hero-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 95vh;
+    align-items: center;
+}
+
+.hero-text-side {
+    flex: 1.1;
+    padding: 80px 60px 80px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-image-side {
+    flex: 0.9;
+    height: 95vh;
+    overflow: hidden;
+    background-color: #F5F2EB;
+}
+
+.hero-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.02) contrast(98%);
+}
+
+.hero-section .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: #5C4033;
+    letter-spacing: 3px;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+}
+
+.hero-section h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 30px;
+    letter-spacing: -1.5px;
+}
+
+.hero-section .highlight {
+    color: #5C4033;
+    border-bottom: 2px solid #5C4033;
+    padding-bottom: 4px;
+}
+
+.hero-section .slogan {
+    font-size: 1.2rem;
+    color: #6E6A62;
+    font-weight: 300;
+}
+
+.scroll-indicator {
+    margin-top: 100px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: #A39E93;
+}
+
+/* ==========================================================================
+   ② PROFILE SECTION (깔끔하고 우아한 정렬)
+   ========================================================================== */
+.profile-section {
+    background-color: #FFFFFF;
+    /* 흰색 교차 배열로 입체감 부여 */
+    max-width: 100%;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.section-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 100px;
+}
+
+.grid-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.grid-right {
+    flex: 1.6;
+    min-width: 400px;
+}
+
+.avatar-frame {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin-bottom: 40px;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #F5F2EB;
+}
+
+.tiger-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #FFFFFF;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 0 4px 15px rgba(92, 64, 51, 0.08);
+    z-index: 1;
+}
+
+.meta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-item {
+    display: flex;
+    border-bottom: 1px solid #F5F2EB;
+    padding-bottom: 14px;
+}
+
+.info-item .label {
+    width: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #A39E93;
+    letter-spacing: 1.5px;
+}
+
+.info-item .value {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.info-item .sub {
+    font-size: 0.85rem;
+    color: #BCB8AE;
+    margin-left: 6px;
+}
+
+.mbti-tag {
+    background: #5C4033;
+    color: #FFF;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.editorial-title {
+    font-size: 2.2rem;
+    line-height: 1.45;
+    font-weight: 700;
+    margin-bottom: 35px;
+    letter-spacing: -1px;
+}
+
+.brand-desc {
+    font-size: 1.05rem;
+    color: #4A463F;
+    margin-bottom: 28px;
+}
+
+.keyword-group {
+    margin-top: 50px;
+}
+
+.keyword-tag {
+    display: inline-block;
+    color: #5C4033;
+    background: #F5F2EB;
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-right: 8px;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   ③ STATS SECTION (소프트 크림 베이지 카드 레이아웃)
+   ========================================================================== */
+.stats-section {
+    background-color: #F5F2EB;
+    /* 묵직한 샌드 베이지 톤 */
+    max-width: 100%;
+    padding: 100px 40px;
+}
+
+.stats-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+}
+
+.stat-card {
+    flex: 1;
+    min-width: 250px;
+    background-color: #FDFBF7;
+    padding: 40px;
+    border-radius: 4px;
+    border: 1px solid rgba(92, 64, 51, 0.05);
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #5C4033;
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #6E6A62;
+}
+
+/* ==========================================================================
+   ④ TIMELINE SECTION
+   ========================================================================== */
+.timeline-section {
+    background-color: #FFFFFF;
+    max-width: 100%;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.wide-timeline {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    display: flex;
+    gap: 40px;
+}
+
+.timeline-block {
+    flex: 1;
+    min-width: 280px;
+    background: #FDFBF7;
+    padding: 40px 35px;
+    border-radius: 4px;
+    border: 1px solid #F5F2EB;
+}
+
+.time-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #5C4033;
+    margin-bottom: 20px;
+}
+
+.timeline-block h3 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.timeline-block p {
+    font-size: 0.95rem;
+    color: #6E6A62;
+}
+
+/* ==========================================================================
+   ⑤ INFLECTION POINT
+   ========================================================================== */
+.inflection-section {
+    background-color: #FDFBF7;
+    max-width: 100%;
+    padding: 120px 40px;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.inflection-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.inflection-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #A39E93;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.inflection-title {
+    font-size: 2rem;
+    margin-bottom: 35px;
+    font-weight: 700;
+}
+
+.inflection-text {
+    font-size: 1.05rem;
+    color: #4A463F;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+/* ==========================================================================
+   ⑥ SALES MASTERY (글과 비즈니스 오브제 이미지가 가로로 배치되는 레이아웃)
+   ========================================================================== */
+.mastery-section {
+    background-color: #FFFFFF;
+    max-width: 100%;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.mastery-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 80px;
+}
+
+.mastery-left-content {
+    flex: 1.4;
+}
+
+.mastery-right-image {
+    flex: 1.25;
+    min-width: 320px;
+}
+
+.sticky-image-container {
+    position: sticky;
+    top: 60px;
+    /* 스크롤 시 우측 이미지가 기분 좋게 따라붙는 효과 */
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.editorial-inline-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.editorial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.editorial-item {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.editorial-item:last-child {
+    border-bottom: none;
+}
+
+.item-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #BCB8AE;
+    line-height: 1;
+}
+
+.item-body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.item-body p {
+    font-size: 1rem;
+    color: #6E6A62;
+}
+
+.duration {
+    font-size: 0.85rem;
+    color: #5C4033;
+    background-color: #F5F2EB;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-left: 6px;
+}
+
+/* 하이라이트 아이템을 과하지 않고 우아하게 사각형 테두리로 연출 */
+.highlight-item {
+    background: #FDFBF7;
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid #5C4033;
+}
+
+.highlight-item .item-num {
+    color: #5C4033;
+}
+
+/* ==========================================================================
+   ⑦ SKILLS SECTION
+   ========================================================================== */
+.skills-section {
+    background: #FDFBF7;
+    max-width: 100%;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.skills-layout {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    display: flex;
+    gap: 60px;
+}
+
+.skills-block {
+    flex: 1;
+    min-width: 280px;
+}
+
+.skills-block h3 {
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #5C4033;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #5C4033;
+    padding-bottom: 10px;
+}
+
+.minimal-skill {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #F5F2EB;
+    font-weight: 400;
+}
+
+.minimal-skill .s-name {
+    color: #4A463F;
+}
+
+.minimal-skill .s-val {
+    color: #5C4033;
+    font-weight: 700;
+}
+
+.cert-row {
+    padding: 14px 0;
+    border-bottom: 1px solid #F5F2EB;
+}
+
+.cert-row strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.cert-row .c-org {
+    font-size: 0.85rem;
+    color: #A39E93;
+}
+
+.skills-foot {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    font-size: 0.85rem;
+    color: #A39E93;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   ⑧ NEXT CHAPTER & BOOKS (이미지 요소가 녹아든 하단 하이라이트 라운지)
+   ========================================================================== */
+.next-section {
+    background: #FFFFFF;
+    max-width: 100%;
+}
+
+.next-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 100px;
+}
+
+.next-brand {
+    flex: 1.2;
+    min-width: 320px;
+}
+
+.books-brand {
+    flex: 1;
+    min-width: 320px;
+}
+
+.next-brand .tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #A39E93;
+    letter-spacing: 1px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.next-brand h2 {
+    font-size: 2.2rem;
+    line-height: 1.45;
+    margin-bottom: 35px;
+}
+
+.next-brand .accent-brown {
+    color: #5C4033;
+}
+
+.next-brand p {
+    color: #4A463F;
+    margin-bottom: 30px;
+}
+
+/* 이미지 박스 래퍼 스타일 (세련된 여백과 고정 비율) */
+.next-img-wrapper {
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 35px;
+    border: 1px solid #F5F2EB;
+}
+
+.books-img-wrapper {
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 35px;
+    border: 1px solid #F5F2EB;
+}
+
+.next-inline-img,
+.books-inline-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 바이브코딩 크림 톤 박스 보정 */
+.vibe-quote {
+    background: #FDFBF7;
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid #F5F2EB;
+    border-left: 3px solid #5C4033;
+}
+
+.vibe-quote strong {
+    color: #1E2229;
+    display: block;
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+}
+
+.vibe-quote p {
+    color: #6E6A62;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* 책 섹션 감성 리터칭 */
+.quote-editorial {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #5C4033;
+    font-weight: 500;
+    margin-top: 82px;
+    margin-bottom: 40px;
+}
+
+.book-list-editorial {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.book-editorial-item {
+    border-left: 1px solid #F5F2EB;
+    padding-left: 20px;
+}
+
+.b-author {
+    display: block;
+    font-size: 0.8rem;
+    color: #A39E93;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.b-title {
+    font-size: 1.05rem;
+    color: #1E2229;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   FOOTER SECTION
+   ========================================================================== */
+.brand-footer {
+    background: #F5F2EB;
+    color: #6E6A62;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 0.9rem;
+}
+
+.brand-footer .sub-foot {
+    font-size: 0.8rem;
+    color: #A39E93;
+    margin-top: 8px;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS (반응형 뷰포트 완벽 대응)
+   ========================================================================== */
+@media (max-width: 992px) {
+    .hero-wrapper {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .hero-text-side {
+        padding: 80px 40px;
+    }
+
+    .hero-image-side {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .mastery-layout {
+        flex-direction: column;
+    }
+
+    .sticky-image-container {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 80px 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.4rem;
+    }
+
+    .section-grid,
+    .wide-timeline,
+    .skills-layout,
+    .next-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .editorial-title {
+        font-size: 1.6rem;
+    }
+}
