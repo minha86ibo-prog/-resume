@@ -149,6 +149,7 @@ h4 {
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(92, 64, 51, 0.08);
     border: 1px solid #F5F2EB;
+    will-change: transform;
 }
 
 .mbti-chart-card .chart-header {
@@ -805,4 +806,245 @@ h4 {
     .editorial-title {
         font-size: 1.6rem;
     }
+}
+
+/* ==========================================================================
+   INTERACTION & ANIMATION LAYERS (추가된 효과)
+   ========================================================================== */
+
+/* 1. 커스텀 커서 스타일 */
+.cursor {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(92, 64, 51, 0.3);
+    border: 1px solid #5C4033;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-text {
+    color: #FFFFFF;
+    font-size: 0px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease, font-size 0.3s ease;
+}
+
+/* 버튼/링크 일반 호버 상태 */
+.cursor-hover {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(92, 64, 51, 0.6);
+}
+
+/* 이미지/카드 VIEW 텍스트 호버 상태 */
+.cursor-view {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(92, 64, 51, 0.9);
+    border-color: transparent;
+}
+
+.cursor-view .cursor-text {
+    font-size: 11px;
+    opacity: 1;
+}
+
+/* 2. 호버 카드 애니메이션 준비 */
+.hover-card {
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+}
+
+.hover-card:hover {
+    box-shadow: 0 20px 40px rgba(92, 64, 51, 0.15) !important;
+}
+
+/* 3. 부드러운 스크롤을 위한 설정 */
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+/* ==========================================================================
+   ADVANCED ENTREPRENEUR INTERACTION EFFECTS (추가된 효과)
+   ========================================================================== */
+
+/* 1. 타임라인 진행선 스타일 (Effect 1) */
+.timeline-progress-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.timeline-progress-track {
+    position: absolute;
+    background-color: #F5F2EB;
+}
+
+.timeline-progress-bar {
+    position: absolute;
+    background-color: #5C4033;
+}
+
+@media (min-width: 769px) {
+    .timeline-progress-wrapper {
+        height: 2px;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+    .timeline-progress-track {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+    }
+    .timeline-progress-bar {
+        top: 0;
+        left: 0;
+        width: 0%; /* JS에서 제어 */
+        height: 2px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wide-timeline {
+        position: relative;
+        padding-left: 30px !important;
+    }
+    .timeline-progress-wrapper {
+        position: absolute;
+        top: 0;
+        left: 10px;
+        width: 2px;
+        height: 100%;
+        margin: 0;
+    }
+    .timeline-progress-track {
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+    }
+    .timeline-progress-bar {
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 0%; /* JS에서 제어 */
+    }
+}
+
+/* 2. 패럴랙스용 이미지 확대 및 여백 제공 (Effect 3) */
+.editorial-inline-img,
+.books-inline-img,
+.hero-cover-img,
+.next-inline-img {
+    transform: scale(1.15); /* 패럴랙스 스크롤 여유 공간 확보 */
+    will-change: transform;
+    transition: filter 0.5s ease;
+}
+
+/* 3. 마그네틱 Back to Top 버튼 (Effect 4) */
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #FDFBF7;
+    border: 1px solid #5C4033;
+    color: #5C4033;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(92, 64, 51, 0.08);
+}
+
+.back-to-top .btn-arrow {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.back-to-top .btn-text {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.back-to-top:hover {
+    background-color: #5C4033;
+    color: #FFFFFF;
+}
+
+/* 4. 스킬 섹션 미니멀 게이지바 스타일 */
+.minimal-skill {
+    position: relative;
+}
+
+.skill-progress-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1.5px;
+    background-color: #5C4033;
+    width: 0%;
+    will-change: width;
+}
+
+/* 5. 세일즈 마스터리 시네마틱 스포트라이트 */
+.sticky-image-container .editorial-inline-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+}
+
+.sticky-image-container .editorial-inline-img.active {
+    opacity: 1;
+}
+
+.editorial-item {
+    border-left: 3px solid transparent;
+    padding-left: 15px;
+    transition: border-color 0.4s ease, padding 0.4s ease;
+}
+
+.editorial-item.spotlight-active {
+    border-left-color: #5C4033;
+    padding-left: 25px;
+}
+
+.editorial-item.spotlight-active .item-num {
+    color: #5C4033;
+    font-weight: 700;
 }
