@@ -125,12 +125,66 @@ h4 {
 }
 
 .scroll-indicator {
-    margin-top: 100px;
+    margin-top: 80px;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 0.9rem;
     letter-spacing: 1px;
     color: #A39E93;
+}
+
+/* Hero Cards Layout */
+.hero-cards-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+/* MBTI Chart Card (Hero Section) */
+.mbti-chart-card {
+    background-color: #FFFFFF;
+    color: #4A463F;
+    width: 240px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(92, 64, 51, 0.08);
+    border: 1px solid #F5F2EB;
+}
+
+.mbti-chart-card .chart-header {
+    background-color: #5C4033;
+    text-align: center;
+    padding: 12px 0;
+}
+
+.mbti-chart-card .chart-header h4 {
+    color: #FFFFFF;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.1rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.mbti-chart-card .chart-subheader {
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 12px 0;
+    line-height: 1.4;
+    border-bottom: 1px solid #F5F2EB;
+    background-color: #FDFBF7;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #6E6A62;
+}
+
+.mbti-chart-card .chart-body {
+    padding: 20px 10px 25px 10px;
+    background-color: #FFFFFF;
+}
+
+.radar-svg {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* ==========================================================================
