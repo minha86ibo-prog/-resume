@@ -121,13 +121,21 @@
                 </div>
                 <div class="hero-image-side">
                     <div class="hero-books-container">
-                        <div class="hero-book-item book-1 hover-card" data-book-src="img/woman.jpg"
-                            data-book-caption="힐러리 — 내 인생의 책">
-                            <img src="img/woman.jpg" alt="Woman Book Cover">
+                        <div class="hero-book-item book-1 hover-card" data-book-src="img/book15.jpg"
+                            data-book-caption="나는 생각이 너무 많아">
+                            <img src="img/book15.jpg" alt="나는 생각이 너무 많아 Book Cover">
                         </div>
-                        <div class="hero-book-item book-2 hover-card" data-book-src="img/aribaba.jpg"
-                            data-book-caption="마윈 — 알리바바의 도전">
-                            <img src="img/aribaba.jpg" alt="Aribaba Book Cover">
+                        <div class="hero-book-item book-4 hover-card" data-book-src="img/woman.jpg"
+                            data-book-caption="여자라면 힐러리처럼">
+                            <img src="img/woman.jpg" alt="여자라면 힐러리처럼 Book Cover">
+                        </div>
+                        <div class="hero-book-item book-5 hover-card" data-book-src="img/aribaba.jpg"
+                            data-book-caption="이것이 마윈의 알리바바다!">
+                            <img src="img/aribaba.jpg" alt="이것이 마윈의 알리바바다 Book Cover">
+                        </div>
+                        <div class="hero-book-item book-2 hover-card" data-book-src="img/book14.jpg"
+                            data-book-caption="내가 틀릴 수도 있습니다">
+                            <img src="img/book14.jpg" alt="내가 틀릴 수도 있습니다 Book Cover">
                         </div>
                         <div class="hero-book-item book-3 hover-card" data-book-src="img/ubermansch.jpg"
                             data-book-caption="위버멘쉬 — 나를 넘어서는 초인의 철학">
@@ -365,8 +373,11 @@
                     <span class="tag">NEXT CHAPTER</span>
                     <h2>오프라인 마스터에서<br><span class="accent-brown">온라인 플랫폼 혁신가로</span></h2>
 
-                    <div class="next-img-wrapper">
-                        <img src="img/desk_vibe.png" alt="AI 기술과 감성 브랜드의 결합 무드" class="next-inline-img">
+                    <div class="next-img-wrapper" style="position: relative;">
+                        <img src="img/desk_vide02.png" alt="AI 기술과 감성 브랜드의 결합 무드" class="next-inline-img">
+                        <div class="monitor-typing-overlay">
+                            <span id="monitor-typed-text"></span><span class="vibe-cursor" id="monitor-cursor">|</span>
+                        </div>
                     </div>
 
                     <p>
@@ -637,6 +648,26 @@
                 scrub: true
             }
         });
+        gsap.to('.hero-book-item.book-4', {
+            y: -25,
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.hero-image-side',
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+        gsap.to('.hero-book-item.book-5', {
+            y: -35,
+            ease: "none",
+            scrollTrigger: {
+                trigger: '.hero-image-side',
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
 
         // 9-3. 책 클릭 → 모달 라이트박스 열기
         const bookModal = document.getElementById('bookModal');
@@ -819,6 +850,51 @@
                 }
             });
         }
+        // 14. NEXT CHAPTER — 모니터 타이핑 효과 (뷰포트 진입 시 딱 한 번 실행)
+        (function () {
+            const TARGET_TEXT = 'AI바이브 코딩 수업\nAI와 협약해서 창업 준비 중';
+            const typedEl  = document.getElementById('monitor-typed-text');
+            const cursorEl = document.getElementById('monitor-cursor');
+            const triggerEl = document.querySelector('.next-img-wrapper');
+
+            if (!typedEl || !cursorEl || !triggerEl) return;
+
+            let started = false;
+
+            function runTyping() {
+                if (started) return;
+                started = true;
+
+                let i = 0;
+                function typeNext() {
+                    if (i < TARGET_TEXT.length) {
+                        typedEl.textContent += TARGET_TEXT[i];
+                        i++;
+                        const nextChar = TARGET_TEXT[i] || '';
+                        const delay = /[\s\(\)\!]/.test(nextChar) ? 180 :
+                                      i === 1 ? 400 : 120; 
+                        setTimeout(typeNext, delay);
+                    } else {
+                        // 타이핑 완료 → 커서 0.8초 더 깜빡이다가 사라짐
+                        setTimeout(() => {
+                            cursorEl.classList.add('done');
+                        }, 800);
+                    }
+                }
+                setTimeout(typeNext, 300);
+            }
+
+            const vibeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        runTyping();
+                        vibeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            vibeObserver.observe(triggerEl);
+        })();
     </script>
 </body>
 

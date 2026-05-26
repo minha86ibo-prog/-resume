@@ -133,37 +133,63 @@ h4 {
  * book-3 (ubermansch.jpg / 위버멘쉬): 소파 등받이 위에 살짝 걸친 책
  */
 
-/* book-1: 힐러리 — 위버멘쉬(book-3) 오른쪽 아래 빈 서랍 칸 */
+/* book-1: 힐러리 — 위버멘쉬(book-3) 오른쪽 아래 빈 서랍 칸, 나는 생각이 너무 많아*/
 /* ✏️ 위치 조정: top(위아래), left(좌우) 값을 직접 바꿔서 미세 조정하세요 */
 .hero-book-item.book-1 {
     width: 140px;
-    top: 45%;
-    /* ↕ 위아래: 값 올리면 위로, 내리면 아래로 */
-    left: 20%;
+    top: 48%;
+    /* ↕ 위아래: 값 올리면 위로, 내리면 아래로 , */
+    left: 22%;
     /* ↔ 좌우: 값 올리면 오른쪽, 내리면 왼쪽 */
     transform: rotate(-1.5deg);
     z-index: 3;
     filter: brightness(0.88) contrast(1.05);
 }
 
-/* book-2: 마윈(알리바바) — 책장 중앙 우측 빈 서랍 칸 (정면으로 세워진 형태) */
+/* book-2: 내가 틀릴 수도 있습니다. — 책장 중앙 우측 빈 서랍 칸 (정면으로 세워진 형태) */
 .hero-book-item.book-2 {
     width: 150px;
-    top: 60%;
-    left: 60%;
+    top: 64%;
+    left: 62%;
     transform: rotate(0.8deg);
     z-index: 2;
     filter: brightness(0.88) contrast(1.08);
 }
 
-/* book-3: 아비투스 — 소파 위 책장 하단 빈 칸, 살짝 기울어진 형태 */
+/* book-3: 위버멘쉬 — 소파 위 책장 하단 빈 칸, 살짝 기울어진 형태 */
 .hero-book-item.book-3 {
     width: 130px;
-    top: 46%;
-    left: 6%;
+    top: 48%;
+    left: 8%;
     transform: rotate(-5deg) translateY(2px);
     z-index: 1;
     filter: brightness(0.86) contrast(1.06);
+}
+
+/* book-4: 여자라면 힐러리처럼 — book-1 바로 오른쪽 */
+/* ✏️ 위치 조정: top(위아래), left(좌우) 값을 직접 바꿔서 조정하세요 */
+.hero-book-item.book-4 {
+    width: 135px;
+    top: 49%;
+    /* ↕ 위아래 위치 */
+    left: 35%;
+    /* ↔ book-1(20%) 오른쪽 바로 옆 */
+    transform: rotate(1.2deg);
+    z-index: 4;
+    filter: brightness(0.89) contrast(1.05);
+}
+
+/* book-5: 이것이 마윈의 알리바바다! — book-4 오른쪽 */
+/* ✏️ 위치 조정: top(위아래), left(좌우) 값을 직접 바꿔서 조정하세요 */
+.hero-book-item.book-5 {
+    width: 138px;
+    top: 48%;
+    /* ↕ 위아래 위치 */
+    left: 49%;
+    /* ↔ book-4(33%) 오른쪽 바로 옆 */
+    transform: rotate(-0.8deg);
+    z-index: 5;
+    filter: brightness(0.87) contrast(1.07);
 }
 
 .hero-book-item:hover {
@@ -733,6 +759,10 @@ h4 {
 .mastery-right-image {
     flex: 1.25;
     min-width: 320px;
+    align-self: flex-start;
+    /* 오른쪽 박스가 왼쪽 콘텐츠 높이에 늘어나지 않게 */
+    padding-top: 73px;
+    /* ✏️ 왼쪽 제목 높이에 맞춰 내리기: 값 올리면 더 내려감 */
 }
 
 .sticky-image-container {
@@ -971,6 +1001,69 @@ h4 {
     display: block;
     font-size: 1.05rem;
     margin-bottom: 12px;
+}
+
+/* 모니터 화면 위 타이핑 효과 오버레이 (기존 이미지 텍스트 덮기) */
+.monitor-typing-overlay {
+    position: absolute;
+    top: 7%;
+    left: 10%;
+    /* ✏️ 텍스트가 잘리지 않도록 좌우 여백을 넓게 사용 */
+    width: 80%;
+    /* ✏️ 한 줄에 길게 들어가도록 너비 대폭 확장 */
+    height: 48%;
+
+    /* ✏️ 원본 이미지가 깨끗해졌으므로 완벽한 투명 배경으로 변경 */
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+
+    /* 텍스트 스타일 */
+    color: #1E1B1A;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.9rem;
+    /* ✏️ 모니터 안에 잘 들어오도록 폰트 크기 살짝 조정 */
+    line-height: 1.6;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -1px;
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: pre-line;
+    /* \n에서만 줄바꿈되도록 유지 */
+    word-break: keep-all;
+    /* 단어 중간에서 줄바꿈 방지 */
+    z-index: 10;
+}
+
+/* 깜빡이는 커서 */
+.vibe-cursor {
+    display: inline-block;
+    color: #5C4033;
+    font-weight: 400;
+    animation: vibe-blink 0.75s step-end infinite;
+    margin-left: 1px;
+}
+
+@keyframes vibe-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* 타이핑 완료 후 커서 숨기기 */
+.vibe-cursor.done {
+    animation: none;
+    opacity: 0;
 }
 
 .vibe-quote p {
