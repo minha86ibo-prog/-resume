@@ -121,14 +121,17 @@
                 </div>
                 <div class="hero-image-side">
                     <div class="hero-books-container">
-                        <div class="hero-book-item book-1 hover-card">
+                        <div class="hero-book-item book-1 hover-card" data-book-src="img/woman.jpg"
+                            data-book-caption="힐러리 — 내 인생의 책">
                             <img src="img/woman.jpg" alt="Woman Book Cover">
                         </div>
-                        <div class="hero-book-item book-2 hover-card">
+                        <div class="hero-book-item book-2 hover-card" data-book-src="img/aribaba.jpg"
+                            data-book-caption="마윈 — 알리바바의 도전">
                             <img src="img/aribaba.jpg" alt="Aribaba Book Cover">
                         </div>
-                        <div class="hero-book-item book-3 hover-card">
-                            <img src="img/habitus.jpg" alt="Habitus Book Cover">
+                        <div class="hero-book-item book-3 hover-card" data-book-src="img/ubermansch.jpg"
+                            data-book-caption="위버멘쉬 — 나를 넘어서는 초인의 철학">
+                            <img src="img/ubermansch.jpg" alt="위버멘쉬 Book Cover">
                         </div>
                     </div>
                 </div>
@@ -245,7 +248,8 @@
                         미국에서 검증된 글로벌 리더십 세미나에 참여 후 "타인에게 선한 영향력을 깊게 끼치는 사람이 되겠다"는 인생의 북극성을 세웠습니다.
                     </p>
                     <p class="inflection-text">
-                        이후 독립 사업가 지원 프로그램인 'Network21'을 정기 구독하며 책, 북오디오, 대형 세미나 속 인간관계론을 광적으로 흡수했습니다. 그리고 인간과 사회의 실체를 알기 위해
+                        이후 독립 사업가 지원 프로그램인 'Network21'을 정기 구독하며 책, 북오디오, 대형 세미나 속 인간관계론을 광적으로 흡수했습니다. 그리고 인간과 사회의 실체를 알기
+                        위해
                         가장 거칠고 위대한 '오프라인 개척 영업' 전선에 온몸을 던졌습니다.
                     </p>
                 </div>
@@ -418,6 +422,15 @@
         <span class="btn-arrow">↑</span>
         <span class="btn-text">TOP</span>
     </button>
+
+    <!-- Book Modal Lightbox -->
+    <div class="book-modal-overlay" id="bookModal" role="dialog" aria-modal="true">
+        <div class="book-modal-inner">
+            <button class="book-modal-close" id="bookModalClose" aria-label="닫기">✕</button>
+            <img src="" alt="" class="book-modal-img" id="bookModalImg">
+            <p class="book-modal-caption" id="bookModalCaption"></p>
+        </div>
+    </div>
 
     <script>
         // 1. 타이핑 효과 (Typewriter)
@@ -593,9 +606,9 @@
             );
         });
 
-        // 9-2. 히어로 북 커버 패럴랙스 (각기 다른 속도로 우아하게 흐르는 연출)
+        // 9-2. 히어로 북 패럴랙스 (미세한 부유감 — 서재 일체형 배치 유지를 위해 값 최소화)
         gsap.to('.hero-book-item.book-1', {
-            y: -120,
+            y: -30,
             ease: "none",
             scrollTrigger: {
                 trigger: '.hero-image-side',
@@ -605,7 +618,7 @@
             }
         });
         gsap.to('.hero-book-item.book-2', {
-            y: -60,
+            y: -20,
             ease: "none",
             scrollTrigger: {
                 trigger: '.hero-image-side',
@@ -615,13 +628,54 @@
             }
         });
         gsap.to('.hero-book-item.book-3', {
-            y: -180,
+            y: -40,
             ease: "none",
             scrollTrigger: {
                 trigger: '.hero-image-side',
                 start: "top top",
                 end: "bottom top",
                 scrub: true
+            }
+        });
+
+        // 9-3. 책 클릭 → 모달 라이트박스 열기
+        const bookModal = document.getElementById('bookModal');
+        const bookModalImg = document.getElementById('bookModalImg');
+        const bookModalCaption = document.getElementById('bookModalCaption');
+        const bookModalClose = document.getElementById('bookModalClose');
+
+        document.querySelectorAll('.hero-book-item').forEach(book => {
+            book.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const src = book.getAttribute('data-book-src');
+                const caption = book.getAttribute('data-book-caption');
+                bookModalImg.src = src;
+                bookModalImg.alt = caption;
+                bookModalCaption.textContent = caption;
+                bookModal.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 모달 닫기 — X 버튼
+        bookModalClose.addEventListener('click', () => {
+            bookModal.classList.remove('is-open');
+            document.body.style.overflow = '';
+        });
+
+        // 모달 닫기 — 배경 클릭
+        bookModal.addEventListener('click', (e) => {
+            if (e.target === bookModal) {
+                bookModal.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // 모달 닫기 — ESC 키
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && bookModal.classList.contains('is-open')) {
+                bookModal.classList.remove('is-open');
+                document.body.style.overflow = '';
             }
         });
 

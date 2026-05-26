@@ -85,7 +85,7 @@ h4 {
     height: 95vh;
     overflow: hidden;
     background-color: #F5F2EB;
-    background-image: url('img/book03.jpg');
+    background-image: url('img/book07.png');
     /* 고정 배경 이미지 book03.jpg 완벽 복원 */
     background-attachment: fixed;
     background-size: cover;
@@ -105,20 +105,19 @@ h4 {
 
 .hero-book-item {
     position: absolute;
-    width: 180px;
-    /* 모든 책의 크기를 180px로 통일하여 일관성 부여 */
     height: auto;
-    border-radius: 4px 12px 12px 4px;
+    border-radius: 3px 8px 8px 3px;
     box-shadow:
-        0 22px 45px rgba(0, 0, 0, 0.32),
-        5px 5px 18px rgba(0, 0, 0, 0.18),
-        inset 3px 0 5px rgba(255, 255, 255, 0.25);
-    border-left: 5px solid rgba(0, 0, 0, 0.12);
+        0 18px 38px rgba(0, 0, 0, 0.38),
+        4px 4px 14px rgba(0, 0, 0, 0.22),
+        inset 3px 0 6px rgba(255, 255, 255, 0.18),
+        inset -2px 0 4px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid rgba(0, 0, 0, 0.18);
     overflow: hidden;
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s ease;
+    transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.45s ease, z-index 0s;
     will-change: transform;
     pointer-events: auto;
-    /* enable interactions on book covers */
+    cursor: pointer;
 }
 
 .hero-book-item img {
@@ -127,31 +126,140 @@ h4 {
     display: block;
 }
 
+/*
+ * 서재 배경(book07.png) 구도에 최적화된 책 배치
+ * book-1 (woman.jpg / 힐러리): 책장 좌측 상단 빈 칸 - 세워진 책처럼
+ * book-2 (aribaba.jpg / 마윈): 책장 중앙 빈 선반 공간 - 정면으로 기댄 책
+ * book-3 (ubermansch.jpg / 위버멘쉬): 소파 등받이 위에 살짝 걸친 책
+ */
+
+/* book-1: 힐러리 — 위버멘쉬(book-3) 오른쪽 아래 빈 서랍 칸 */
+/* ✏️ 위치 조정: top(위아래), left(좌우) 값을 직접 바꿔서 미세 조정하세요 */
 .hero-book-item.book-1 {
-    top: 12%;
-    left: 32%;
-    transform: rotate(-5deg);
+    width: 140px;
+    top: 45%;
+    /* ↕ 위아래: 값 올리면 위로, 내리면 아래로 */
+    left: 20%;
+    /* ↔ 좌우: 값 올리면 오른쪽, 내리면 왼쪽 */
+    transform: rotate(-1.5deg);
     z-index: 3;
+    filter: brightness(0.88) contrast(1.05);
 }
 
+/* book-2: 마윈(알리바바) — 책장 중앙 우측 빈 서랍 칸 (정면으로 세워진 형태) */
 .hero-book-item.book-2 {
-    top: 38%;
-    left: 44%;
-    transform: rotate(6deg);
+    width: 150px;
+    top: 60%;
+    left: 60%;
+    transform: rotate(0.8deg);
     z-index: 2;
+    filter: brightness(0.88) contrast(1.08);
 }
 
+/* book-3: 아비투스 — 소파 위 책장 하단 빈 칸, 살짝 기울어진 형태 */
 .hero-book-item.book-3 {
-    top: 64%;
-    left: 30%;
-    transform: rotate(-3deg);
+    width: 130px;
+    top: 46%;
+    left: 6%;
+    transform: rotate(-5deg) translateY(2px);
     z-index: 1;
+    filter: brightness(0.86) contrast(1.06);
 }
 
 .hero-book-item:hover {
-    transform: scale(1.08) translateY(-10px) rotate(0deg) !important;
-    box-shadow: 0 35px 55px rgba(0, 0, 0, 0.4), 10px 10px 25px rgba(0, 0, 0, 0.25);
-    z-index: 10;
+    transform: scale(1.1) translateY(-12px) rotate(0deg) !important;
+    box-shadow:
+        0 40px 60px rgba(0, 0, 0, 0.45),
+        12px 12px 28px rgba(0, 0, 0, 0.28);
+    z-index: 20;
+    filter: brightness(1.0) contrast(1.0) !important;
+}
+
+/* ============================================================
+   BOOK MODAL LIGHTBOX
+   ============================================================ */
+.book-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 8, 6, 0.88);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 40px 20px;
+}
+
+.book-modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.book-modal-inner {
+    position: relative;
+    max-width: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(0.88) translateY(20px);
+    transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.book-modal-overlay.is-open .book-modal-inner {
+    transform: scale(1) translateY(0);
+}
+
+.book-modal-img {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 6px 18px 18px 6px;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    border-left: 8px solid rgba(0, 0, 0, 0.25);
+    display: block;
+}
+
+.book-modal-caption {
+    margin-top: 20px;
+    color: rgba(245, 242, 235, 0.7);
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+}
+
+.book-modal-close {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(245, 242, 235, 0.12);
+    border: 1px solid rgba(245, 242, 235, 0.25);
+    color: #F5F2EB;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    line-height: 1;
+    z-index: 1;
+}
+
+.book-modal-close:hover {
+    background: rgba(245, 242, 235, 0.25);
+    transform: rotate(90deg);
 }
 
 .hero-section .subtitle {
@@ -947,29 +1055,28 @@ h4 {
     }
 
     .hero-book-item {
-        width: 110px;
-        /* smaller for mobile screens */
+        /* 모바일에서 더 작게 */
     }
 
     .hero-book-item.book-1 {
-        top: 12%;
-        left: 32%;
-        transform: rotate(-5deg);
-        z-index: 3;
+        width: 95px;
+        top: 5%;
+        left: 18%;
+        transform: rotate(-1deg);
     }
 
     .hero-book-item.book-2 {
-        top: 38%;
-        left: 42%;
-        transform: rotate(6deg);
-        z-index: 2;
+        width: 100px;
+        top: 30%;
+        left: 60%;
+        transform: rotate(0.8deg);
     }
 
     .hero-book-item.book-3 {
-        top: 64%;
-        left: 30%;
-        transform: rotate(-3deg);
-        z-index: 1;
+        width: 85px;
+        top: 52%;
+        left: 6%;
+        transform: rotate(-5deg) translateY(2px);
     }
 
     .mastery-layout {
