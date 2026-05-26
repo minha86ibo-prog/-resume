@@ -73,25 +73,85 @@ h4 {
 }
 
 .hero-text-side {
-    flex: 1.1;
-    padding: 80px 60px 80px 10%;
+    flex: 0.8;
+    padding: 80px 30px 80px 6%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .hero-image-side {
-    flex: 0.9;
+    flex: 2.0;
     height: 95vh;
     overflow: hidden;
     background-color: #F5F2EB;
+    background-image: url('img/book03.jpg');
+    /* 고정 배경 이미지 book03.jpg 완벽 복원 */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
 }
 
-.hero-cover-img {
+/* Hero books styling */
+.hero-books-container {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: brightness(1.02) contrast(98%);
+    pointer-events: none;
+}
+
+.hero-book-item {
+    position: absolute;
+    width: 180px;
+    /* 모든 책의 크기를 180px로 통일하여 일관성 부여 */
+    height: auto;
+    border-radius: 4px 12px 12px 4px;
+    box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.32),
+        5px 5px 18px rgba(0, 0, 0, 0.18),
+        inset 3px 0 5px rgba(255, 255, 255, 0.25);
+    border-left: 5px solid rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s ease;
+    will-change: transform;
+    pointer-events: auto;
+    /* enable interactions on book covers */
+}
+
+.hero-book-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.hero-book-item.book-1 {
+    top: 12%;
+    left: 32%;
+    transform: rotate(-5deg);
+    z-index: 3;
+}
+
+.hero-book-item.book-2 {
+    top: 38%;
+    left: 44%;
+    transform: rotate(6deg);
+    z-index: 2;
+}
+
+.hero-book-item.book-3 {
+    top: 64%;
+    left: 30%;
+    transform: rotate(-3deg);
+    z-index: 1;
+}
+
+.hero-book-item:hover {
+    transform: scale(1.08) translateY(-10px) rotate(0deg) !important;
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 0.4), 10px 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 10;
 }
 
 .hero-section .subtitle {
@@ -406,10 +466,111 @@ h4 {
     border-bottom: 1px solid #F5F2EB;
 }
 
-.inflection-wrapper {
-    max-width: 750px;
+.inflection-container {
+    max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+/* 3D Flip Card Container */
+.inflection-image-side {
+    flex: 1.1;
+    height: 480px;
+    /* 고정 높이 제공하여 일관된 3D 원근 뷰 유지 */
+    perspective: 1500px;
+    /* 강력한 3D 입체 깊이 설정 */
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
     text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* 통통 튀는 스프링 리턴 효과 */
+    transform-style: preserve-3d;
+}
+
+/* 마우스 호버 시 3D 회전 트리거 */
+.inflection-image-side:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    /* Safari 웹킷 브라우저 지원 */
+    backface-visibility: hidden;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.06);
+}
+
+.flip-card-front {
+    background-color: #FDFBF7;
+}
+
+.inflection-nancy-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.flip-card-back {
+    background-color: #1E1B1A;
+    /* 에스프레소 브라운 톤의 깊은 대비 */
+    color: #F5F2EB;
+    transform: rotateY(180deg);
+    /* 180도 대칭 설계 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: 1px solid rgba(188, 184, 174, 0.2);
+}
+
+.back-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.back-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: #BCB8AE;
+    border-bottom: 1px solid rgba(188, 184, 174, 0.3);
+    padding-bottom: 8px;
+    width: 60px;
+}
+
+.back-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #F5F2EB;
+    max-width: 280px;
+}
+
+.back-signature {
+    font-size: 0.9rem;
+    color: #A39E93;
+    letter-spacing: 1px;
+}
+
+.inflection-wrapper {
+    flex: 1.3;
 }
 
 .inflection-tag {
@@ -424,16 +585,21 @@ h4 {
 }
 
 .inflection-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    /* 한 줄로 정갈하게 들어맞도록 최적의 타이포 크기 설정 */
     margin-bottom: 35px;
     font-weight: 700;
+    line-height: 1.35;
+    white-space: nowrap;
+    /* 데스크톱에서 절대 잘리지 않고 한 줄로 완벽 정렬 */
 }
 
 .inflection-text {
     font-size: 1.05rem;
-    color: #4A463F;
+    color: #6E6A62;
     margin-bottom: 24px;
     text-align: left;
+    line-height: 1.7;
 }
 
 /* ==========================================================================
@@ -775,6 +941,35 @@ h4 {
     .hero-image-side {
         width: 100%;
         height: 50vh;
+        /* background-attachment: fixed can have issues on mobile, keep it scroll or handle it gracefully */
+        background-attachment: scroll;
+        background-position: center center;
+    }
+
+    .hero-book-item {
+        width: 110px;
+        /* smaller for mobile screens */
+    }
+
+    .hero-book-item.book-1 {
+        top: 12%;
+        left: 32%;
+        transform: rotate(-5deg);
+        z-index: 3;
+    }
+
+    .hero-book-item.book-2 {
+        top: 38%;
+        left: 42%;
+        transform: rotate(6deg);
+        z-index: 2;
+    }
+
+    .hero-book-item.book-3 {
+        top: 64%;
+        left: 30%;
+        transform: rotate(-3deg);
+        z-index: 1;
     }
 
     .mastery-layout {
@@ -783,6 +978,22 @@ h4 {
 
     .sticky-image-container {
         height: 350px;
+    }
+
+    .inflection-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .inflection-image-side {
+        max-width: 450px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .inflection-text {
+        text-align: center;
     }
 }
 
@@ -903,16 +1114,19 @@ html.lenis {
         margin-top: 20px;
         margin-bottom: 40px;
     }
+
     .timeline-progress-track {
         top: 0;
         left: 0;
         width: 100%;
         height: 2px;
     }
+
     .timeline-progress-bar {
         top: 0;
         left: 0;
-        width: 0%; /* JS에서 제어 */
+        width: 0%;
+        /* JS에서 제어 */
         height: 2px;
     }
 }
@@ -922,6 +1136,7 @@ html.lenis {
         position: relative;
         padding-left: 30px !important;
     }
+
     .timeline-progress-wrapper {
         position: absolute;
         top: 0;
@@ -930,17 +1145,20 @@ html.lenis {
         height: 100%;
         margin: 0;
     }
+
     .timeline-progress-track {
         top: 0;
         left: 0;
         width: 2px;
         height: 100%;
     }
+
     .timeline-progress-bar {
         top: 0;
         left: 0;
         width: 2px;
-        height: 0%; /* JS에서 제어 */
+        height: 0%;
+        /* JS에서 제어 */
     }
 }
 
@@ -949,7 +1167,8 @@ html.lenis {
 .books-inline-img,
 .hero-cover-img,
 .next-inline-img {
-    transform: scale(1.15); /* 패럴랙스 스크롤 여유 공간 확보 */
+    transform: scale(1.15);
+    /* 패럴랙스 스크롤 여유 공간 확보 */
     will-change: transform;
     transition: filter 0.5s ease;
 }
