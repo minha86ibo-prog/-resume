@@ -120,31 +120,34 @@
                     <div class="scroll-indicator">SCROLL DOWN —</div>
                 </div>
                 <div class="hero-image-side">
-                    <div class="hero-books-container">
-                        <div class="hero-book-item book-1 hover-card" data-book-src="img/book15.jpg"
-                            data-book-caption="나는 생각이 너무 많아">
-                            <img src="img/book15.jpg" alt="나는 생각이 너무 많아 Book Cover">
-                        </div>
-                        <div class="hero-book-item book-4 hover-card" data-book-src="img/woman.jpg"
-                            data-book-caption="여자라면 힐러리처럼">
-                            <img src="img/woman.jpg" alt="여자라면 힐러리처럼 Book Cover">
-                        </div>
-                        <div class="hero-book-item book-5 hover-card" data-book-src="img/aribaba.jpg"
-                            data-book-caption="이것이 마윈의 알리바바다!">
-                            <img src="img/aribaba.jpg" alt="이것이 마윈의 알리바바다 Book Cover">
-                        </div>
-                        <div class="hero-book-item book-2 hover-card" data-book-src="img/book14.jpg"
-                            data-book-caption="내가 틀릴 수도 있습니다">
-                            <img src="img/book14.jpg" alt="내가 틀릴 수도 있습니다 Book Cover">
-                        </div>
-                        <div class="hero-book-item book-3 hover-card" data-book-src="img/ubermansch.jpg"
-                            data-book-caption="위버멘쉬 — 나를 넘어서는 초인의 철학">
-                            <img src="img/ubermansch.jpg" alt="위버멘쉬 Book Cover">
-                        </div>
+                    <!-- Books have been moved to the library section below -->
+                    <div class="hero-character-img">
+                        <img src="img/hero-front.png" alt="독서하는 성장형 캐릭터">
                     </div>
                 </div>
             </div>
         </header>
+
+        <section class="my-library-section reveal-section">
+            <h3 class="library-title">Books That Shaped Me</h3>
+            <div class="my-library-container">
+                <div class="library-book-item hover-card" data-book-src="img/book15.jpg" data-book-title="나는 생각이 너무 많아" data-book-caption="&quot;넘치는 생각을 깊이 있는 통찰과 실행력으로 전환하는 법을 배우다.&quot;">
+                    <img src="img/book15.jpg" alt="나는 생각이 너무 많아 Book Cover">
+                </div>
+                <div class="library-book-item hover-card" data-book-src="img/woman.jpg" data-book-title="여자라면 힐러리처럼" data-book-caption="&quot;당신의 운명을 결정하는 것은 환경이 아니라, 당신의 선택과 결단이다.&quot;">
+                    <img src="img/woman.jpg" alt="여자라면 힐러리처럼 Book Cover">
+                </div>
+                <div class="library-book-item hover-card" data-book-src="img/aribaba.jpg" data-book-title="이것이 마윈의 알리바바다!" data-book-caption="&quot;무모해 보이는 도전을 거대한 현실로 만들어내는 거침없는 개척 정신.&quot;">
+                    <img src="img/aribaba.jpg" alt="이것이 마윈의 알리바바다 Book Cover">
+                </div>
+                <div class="library-book-item hover-card" data-book-src="img/book14.jpg" data-book-title="내가 틀릴 수도 있습니다" data-book-caption="&quot;내 안의 정답을 내려놓고, 타인의 의견을 유연하게 수용하는 단단한 내면.&quot;">
+                    <img src="img/book14.jpg" alt="내가 틀릴 수도 있습니다 Book Cover">
+                </div>
+                <div class="library-book-item hover-card" data-book-src="img/ubermansch.jpg" data-book-title="위버멘쉬 (Übermensch)" data-book-caption="&quot;기존의 틀에 안주하지 않고, 어제보다 오늘 더 주도적으로 성장하는 삶.&quot;">
+                    <img src="img/ubermansch.jpg" alt="위버멘쉬 Book Cover">
+                </div>
+            </div>
+        </section>
 
         <section class="profile-section reveal-section">
             <div class="section-grid">
@@ -465,7 +468,8 @@
         <div class="book-modal-inner">
             <button class="book-modal-close" id="bookModalClose" aria-label="닫기">✕</button>
             <img src="" alt="" class="book-modal-img" id="bookModalImg">
-            <p class="book-modal-caption" id="bookModalCaption"></p>
+            <h4 class="modal-book-title" id="bookModalTitle"></h4>
+            <p class="modal-book-caption" id="bookModalCaption"></p>
         </div>
     </div>
 
@@ -698,17 +702,20 @@
         // 9-3. 책 클릭 → 모달 라이트박스 열기
         const bookModal = document.getElementById('bookModal');
         const bookModalImg = document.getElementById('bookModalImg');
+        const bookModalTitle = document.getElementById('bookModalTitle');
         const bookModalCaption = document.getElementById('bookModalCaption');
         const bookModalClose = document.getElementById('bookModalClose');
 
-        document.querySelectorAll('.hero-book-item').forEach(book => {
+        document.querySelectorAll('.library-book-item, .hero-book-item').forEach(book => {
             book.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const src = book.getAttribute('data-book-src');
+                const title = book.getAttribute('data-book-title') || book.getAttribute('data-book-caption');
                 const caption = book.getAttribute('data-book-caption');
                 bookModalImg.src = src;
-                bookModalImg.alt = caption;
-                bookModalCaption.textContent = caption;
+                bookModalImg.alt = title;
+                if(bookModalTitle) bookModalTitle.textContent = title;
+                if(bookModalCaption) bookModalCaption.textContent = caption;
                 bookModal.classList.add('is-open');
                 document.body.style.overflow = 'hidden';
             });
